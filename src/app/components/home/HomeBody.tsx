@@ -1,27 +1,29 @@
-import CameraIcon from '../icons/CameraIcon';
+'use client';
+
+import { useState } from 'react';
+import HomeImageUpload from './HomeImageUpload';
+import Image from 'next/image';
 
 export default function HomeBody() {
+  const [uploadImage, setUploadImage] = useState<null | File>(null);
+
   return (
     <div className="mt-36 flex flex-col justify-center items-center text-center">
-      <label
-        htmlFor="image-upload"
-        className="w-36 h-36 rounded-lg bg-green-400 text-center flex justify-center items-center cursor-pointer"
-      >
-        <CameraIcon className="w-24 h-24" />
-      </label>
-
-      <input
-        type="file"
-        name="image"
-        id="image-upload"
-        accept="image/*"
-        className="hidden"
-      />
-
-      <h1 className="mt-4 text-xl font-bold italic">
-        scan your fruit <br />
-        or vegetable to begin
-      </h1>
+      {uploadImage ? (
+        <>
+          <Image
+            src={URL.createObjectURL(uploadImage)}
+            alt="image"
+            width={360}
+            height={360}
+          />
+          <button className="w-36 py-4 rounded-lg bg-green-400 text-center text-xl font-bold mt-10">
+            send
+          </button>
+        </>
+      ) : (
+        <HomeImageUpload setUploadImage={setUploadImage} />
+      )}
     </div>
   );
 }
