@@ -24,7 +24,7 @@ export default function HomeSearch() {
           className="px-4 py-2 bg-green-200 text-black rounded-md"
         />
         <button
-          className="ml-2 px-4 py-2 bg-green-400 font-bold text-black rounded-md"
+          className="ml-2 px-4 py-2 bg-veggievision-green font-bold text-black rounded-md"
           type="submit"
         >
           go

@@ -12,7 +12,7 @@ export default function HomeImageUpload({
     <>
       <label
         htmlFor="image-upload"
-        className="w-36 h-36 rounded-lg bg-green-400 text-center flex justify-center items-center cursor-pointer"
+        className="w-36 h-36 rounded-lg bg-veggievision-green text-center flex justify-center items-center cursor-pointer"
       >
         <CameraIcon className="w-24 h-24" />
       </label>

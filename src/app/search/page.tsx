@@ -1,4 +1,5 @@
 import RecipeCard from '~/components/recipe/RecipeCard';
+import { capitalizeFirstLetter } from '~/utils/string';
 
 async function getRecipes(ingredient: string) {
   const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.RECIPE_API}&ingredients=${ingredient}`;
@@ -32,16 +33,25 @@ export default async function Search({
 
   return (
     <div>
-      <div className="rounded-t-2xl bg-green-400 mt-2 flex flex-col items-center">
-        {data &&
-          data.map((element: any) => (
-            <RecipeCard
-              key={element.id}
-              id={element.id}
-              title={element.title}
-              image={element.image}
-            />
-          ))}
+      <h1 className="p-4 font-bold text-3xl">
+        {capitalizeFirstLetter((searchParams?.query as string) ?? '')}
+      </h1>
+
+      <div className="rounded-t-2xl bg-veggievision-green mt-2">
+        <h1 className="text-left p-4 font-bold text-gray-500 text-3xl">
+          Recipes
+        </h1>
+        <div className="flex flex-col items-center">
+          {data &&
+            data.map((element: any) => (
+              <RecipeCard
+                key={element.id}
+                id={element.id}
+                title={element.title}
+                image={element.image}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );
