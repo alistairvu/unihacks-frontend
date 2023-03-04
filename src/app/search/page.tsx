@@ -12,7 +12,6 @@ async function getRecipes(ingredient: string) {
   }
 
   const json = await res.json();
-  console.warn(process.env);
 
   return json.map((e: any) => ({
     id: e.id,
@@ -26,13 +25,7 @@ export default async function Search({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  let data = null;
-
-  if (searchParams?.query) {
-    data = await getRecipes(searchParams.query as string);
-  }
-
-  console.log(data);
+  const data = await getRecipes((searchParams?.query as string) ?? '');
 
   return (
     <div>

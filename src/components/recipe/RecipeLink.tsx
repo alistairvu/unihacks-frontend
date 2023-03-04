@@ -22,7 +22,7 @@ export default function RecipeLink({ id, title }: RecipeLinkProps) {
   };
 
   return (
-    <h1 className="text-xl py-2 px-2 w-80" onClick={handleClick}>
+    <h1 className="text-xl py-2 px-2 w-80 cursor-pointer" onClick={handleClick}>
       {title}
     </h1>
   );
