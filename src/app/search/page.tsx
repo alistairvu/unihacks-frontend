@@ -32,6 +32,8 @@ export default async function Search({
     data = await getRecipes(searchParams.query as string);
   }
 
+  console.log(data);
+
   return (
     <div>
       <h1 className="p-4 font-bold text-3xl">
