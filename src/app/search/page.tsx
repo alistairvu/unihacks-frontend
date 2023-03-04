@@ -12,7 +12,7 @@ async function getRecipes(ingredient: string) {
   }
 
   const json = await res.json();
-  console.log(process.env);
+  console.warn(process.env);
 
   return json.map((e: any) => ({
     id: e.id,
