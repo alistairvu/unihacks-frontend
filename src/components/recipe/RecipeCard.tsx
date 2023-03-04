@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import RecipeLink from './RecipeLink';
 
 type RecipeCardProps = {
   id: number;
@@ -10,7 +11,7 @@ export default function RecipeCard({ id, title, image }: RecipeCardProps) {
   return (
     <div className="my-4 rounded-md bg-white">
       <Image src={image} alt={title} width={320} height={320} />
-      <h1 className="text-xl py-2 px-2 w-80">{title}</h1>
+      <RecipeLink id={id} title={title} />
     </div>
   );
 }
