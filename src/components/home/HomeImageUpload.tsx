@@ -29,8 +29,8 @@ export default function HomeImageUpload({
       />
 
       <h1 className="mt-4 text-xl font-bold italic">
-        scan your fruit <br />
-        or vegetable to begin
+        select or scan <br />
+        your vegetable to begin
       </h1>
     </>
   );

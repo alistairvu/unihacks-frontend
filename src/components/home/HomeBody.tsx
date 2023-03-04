@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import HomeImageUpload from './HomeImageUpload';
 import Image from 'next/image';
+import HomeSearch from './HomeSearch';
 
 export default function HomeBody() {
   const [uploadImage, setUploadImage] = useState<null | File>(null);
@@ -22,7 +23,11 @@ export default function HomeBody() {
           </button>
         </>
       ) : (
-        <HomeImageUpload setUploadImage={setUploadImage} />
+        <>
+          <HomeSearch />
+          <p className="my-10 font-bold text-2xl">or</p>
+          <HomeImageUpload setUploadImage={setUploadImage} />
+        </>
       )}
     </div>
   );
