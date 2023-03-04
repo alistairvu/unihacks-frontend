@@ -9,7 +9,7 @@ export default function HomeBody() {
   const [uploadImage, setUploadImage] = useState<null | File>(null);
 
   return (
-    <div className="mt-36 flex flex-col justify-center items-center text-center">
+    <div className="mt-36 flex flex-col justify-center items-center text-center bg-veggievision-bg/75 rounded-xl p-4 mx-4">
       {uploadImage ? (
         <>
           <Image
