@@ -12,7 +12,7 @@ export default function SearchLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-veggievision-bg">
         <SearchHeader />
         {children}
       </body>

@@ -10,6 +10,11 @@ const nextConfig = {
         hostname: 'spoonacular.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
     ],
   },
 };

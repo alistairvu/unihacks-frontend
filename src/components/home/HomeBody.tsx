@@ -18,7 +18,7 @@ export default function HomeBody() {
             width={360}
             height={360}
           />
-          <button className="w-36 py-4 rounded-lg bg-green-400 text-center text-xl font-bold mt-10">
+          <button className="w-36 py-4 rounded-lg bg-veggievision-green text-center text-xl font-bold mt-10">
             send
           </button>
         </>
