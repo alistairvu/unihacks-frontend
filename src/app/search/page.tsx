@@ -1,6 +1,8 @@
 import RecipeCard from '~/components/recipe/RecipeCard';
 import { capitalizeFirstLetter } from '~/utils/string';
 
+export const dynamic = 'force-dynamic';
+
 async function getRecipes(ingredient: string) {
   const url = `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.RECIPE_API}&ingredients=${ingredient}`;
   const res = await fetch(url);
@@ -12,7 +14,6 @@ async function getRecipes(ingredient: string) {
   }
 
   const json = await res.json();
-  console.log(url);
 
   return json.map((e: any) => ({
     id: e.id,
