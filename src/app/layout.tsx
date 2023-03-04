@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'BLACKRED',
+  title: 'veggievision',
   description: 'in your area',
 };
 
@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="bg-veggievision-bg">{children}</body>
     </html>
   );
 }

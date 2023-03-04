@@ -9,7 +9,15 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        veggievision: {
+          bg: '#F9F1F1',
+          green: '#60AB9A',
+          lightgreen: '#2AFC98',
+        },
+      },
+    },
   },
   plugins: [],
 };
