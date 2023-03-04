@@ -26,6 +26,7 @@ export default async function Search({
 }: {
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
+  console.log(searchParams);
   const data = await getRecipes((searchParams?.query as string) ?? '');
 
   return (
