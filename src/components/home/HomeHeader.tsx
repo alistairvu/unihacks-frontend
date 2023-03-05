@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import LogoIcon from '../icons/LogoIcon';
 import Image from 'next/image';
 import logoImage from '../../../public/veggievision.png';
 

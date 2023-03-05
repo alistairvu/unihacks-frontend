@@ -20,14 +20,17 @@ export default function HomeBody() {
 
       console.log({ uploadImage });
 
-      const response = await fetch('https://cc66-34-87-8-183.ap.ngrok.io/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'ngrok-skip-browser-warning': 'true',
-          'Access-Control-Allow-Origin': '*',
-        },
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_NGROK as unknown as URL,
+        {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'ngrok-skip-browser-warning': 'true',
+            'Access-Control-Allow-Origin': '*',
+          },
+        }
+      );
 
       // console.log(response.ok);
 
