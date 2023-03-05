@@ -4,50 +4,68 @@ import { useState } from 'react';
 import HomeImageUpload from './HomeImageUpload';
 import Image from 'next/image';
 import HomeSearch from './HomeSearch';
-import Link from 'next/link';
+import HomeResults from './HomeResults';
+import { Prediction } from '~/@types/types';
 
 export default function HomeBody() {
   const [uploadImage, setUploadImage] = useState<null | File>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [prediction, setPrediction] = useState<null | string>(null);
+  const [prediction, setPrediction] = useState<null | Prediction>(null);
 
   const handleUpload = async () => {
     setIsLoading(true);
     if (uploadImage != null) {
-      console.log('sending...');
+      const formData = new FormData();
+      formData.append('image', uploadImage);
 
-      const buffer = await uploadImage.arrayBuffer();
+      console.log({ uploadImage });
 
-      const response = await fetch('/api/detect', {
+      const response = await fetch('https://cc66-34-87-8-183.ap.ngrok.io/', {
         method: 'POST',
-        body: JSON.stringify({
-          image: Buffer.from(buffer).toJSON(),
-        }),
+        body: formData,
+        headers: {
+          'ngrok-skip-browser-warning': 'true',
+          'Access-Control-Allow-Origin': '*',
+        },
       });
 
-      const json = await response.json();
-      console.log(json);
-      setPrediction(json.vegetable);
+      // console.log(response.ok);
+
+      // const json = await response.json();
+      // console.log(json);
+      // setPrediction(json);
+
+      console.log(response.ok);
+
+      if (response.ok) {
+        const json = await response.json();
+        console.log(json);
+        setPrediction(json);
+      } else {
+        setPrediction({
+          success: false,
+          error: 'something happened',
+        });
+      }
     }
     setIsLoading(false);
   };
 
   return (
-    <div className="mt-36 flex flex-col justify-center items-center text-center bg-veggievision-bg/75 rounded-xl p-4 mx-4">
+    <div className="mt-24 flex flex-col justify-center items-center text-center bg-veggievision-bg/75 rounded-xl p-4 mx-4">
       {uploadImage ? (
         <>
           <Image
             src={URL.createObjectURL(uploadImage)}
             alt="image"
-            width={360}
-            height={360}
+            width={240}
+            height={240}
           />
           {isLoading ? (
             <h1>loading...</h1>
           ) : prediction ? (
             <>
-              <h1>it is a {prediction}</h1>
-              <Link href={`/search?query=${prediction}`}>learn more</Link>
+              <HomeResults prediction={prediction} />
             </>
           ) : (
             <button
