@@ -11,11 +11,9 @@ export default function SearchLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="bg-veggievision-bg">
-        <SearchHeader />
-        {children}
-      </body>
-    </html>
+    <body className="bg-veggievision-bg">
+      <SearchHeader />
+      {children}
+    </body>
   );
 }

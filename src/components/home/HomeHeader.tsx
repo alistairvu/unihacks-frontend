@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import LogoIcon from '../icons/LogoIcon';
-import logoLink from '../../../public/veggievision.png';
 import Image from 'next/image';
+import logoImage from '../../../public/veggievision.png';
 
 export default function HomeHeader() {
   return (
@@ -10,8 +9,7 @@ export default function HomeHeader() {
         {/* <h1 className="font-bold text-4xl">veggievision</h1>
       
          */}
-
-        <Image width={240} src={logoLink} alt="logo" />
+        <Image src={logoImage} width={256} height={64} alt="logo" />
       </Link>
     </header>
   );

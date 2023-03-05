@@ -13,9 +13,6 @@ export async function GET(request: Request) {
 
   const json = await res.json();
 
-  console.log(json);
-  console.log(process.env);
-
   return NextResponse.json({
     link: json.sourceUrl,
   });

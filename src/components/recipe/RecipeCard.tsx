@@ -31,11 +31,17 @@ export default function RecipeCard({
   };
 
   return (
-    <div className="my-4 rounded-md bg-white" onClick={handleClick}>
-      <Image src={image} alt={title} width={320} height={320} />
-      <div className="py-2 px-2 w-80 cursor-pointer hover:underline">
-        <h1 className="text-xl cursor-pointer underline">{title}</h1>
-        <h2>{usedIngredients ?? ''}</h2>
+    <div className="my-4 rounded-3xl bg-white" onClick={handleClick}>
+      <Image
+        src={image}
+        alt={title}
+        width={320}
+        height={320}
+        className="rounded-3xl"
+      />
+      <div className="py-4 px-4 w-80 cursor-pointer hover:underline">
+        <h1 className="text-xl cursor-pointer py-2 font-biryani">{title}</h1>
+        <h2 className="font-biryani text-sm">{usedIngredients ?? ''}</h2>
       </div>
     </div>
   );

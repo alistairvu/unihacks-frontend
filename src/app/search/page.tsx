@@ -1,8 +1,8 @@
 import RecipeCard from '~/components/recipe/RecipeCard';
 import { capitalizeFirstLetter } from '~/utils/string';
 import Image from 'next/image';
-import sadCarrot from '../../../public/sad_carrot.png';
 import SadCarrotIcon from '~/components/icons/SadCarrotIcon';
+import styles from './background.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +16,11 @@ async function getHeaderPhoto(ingredient: string) {
   }
 
   const json = await res.json();
+
+  if (json.results.length == 0) {
+    return '';
+  }
+
   return json.results[0].urls.raw;
 }
 
@@ -39,6 +44,19 @@ async function getRecipes(ingredient: string) {
   }));
 }
 
+async function getDescription(ingredient: string) {
+  const url = `https://en.wikipedia.org/api/rest_v1/page/summary/${ingredient}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  const json = await res.json();
+  return json.extract;
+}
+
 export default async function Search({
   searchParams,
 }: {
@@ -46,6 +64,9 @@ export default async function Search({
 }) {
   const data = await getRecipes((searchParams?.query as string) ?? '');
   const headerPhoto = await getHeaderPhoto(
+    (searchParams?.query as string) ?? 'vegetable'
+  );
+  const description = await getDescription(
     (searchParams?.query as string) ?? 'vegetable'
   );
 
@@ -60,13 +81,28 @@ export default async function Search({
             alt={(searchParams?.query as string) ?? 'vegetable'}
           />
 
-          <div className="z-10 top-32  bg-veggievision-bg">
-            <h1 className="p-4 font-bold text-3xl z-10">
-              {capitalizeFirstLetter((searchParams?.query as string) ?? '')}
-            </h1>
+          <div className="z-10 top-32 bg-veggievision-bg">
+            <div className="px-4 pb-4">
+              <h1 className={`my-4 font-bold text-4xl font-title`}>
+                <span className={`${styles.halfBackground}`}>
+                  {capitalizeFirstLetter((searchParams?.query as string) ?? '')}
+                </span>
+              </h1>
+
+              <h2 className="pb-4 font-biryani">{description}</h2>
+
+              <a
+                href={`https://en.wikipedia.org/wiki/${
+                  (searchParams?.query as string) ?? 'vegetables'
+                }`}
+                className="underline font-biryani"
+              >
+                Learn more
+              </a>
+            </div>
 
             <div className="rounded-t-2xl bg-veggievision-green mt-2">
-              <h1 className="text-left p-4 font-bold text-veggievision-bg text-3xl">
+              <h1 className="text-left p-4 text-veggievision-bg text-4xl italic font-arsenal">
                 Recipes
               </h1>
               <div className="flex flex-col items-center">
